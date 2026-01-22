@@ -147,22 +147,6 @@ function CottageTree({ position, scale = 1 }: { position: [number, number, numbe
   );
 }
 
-// Mossy rock
-function MossyRock({ position, scale = 1 }: { position: [number, number, number]; scale?: number }) {
-  return (
-    <group position={position} scale={scale}>
-      <mesh castShadow>
-        <dodecahedronGeometry args={[0.15, 0]} />
-        <meshStandardMaterial color={COLORS.stone} flatShading />
-      </mesh>
-      <mesh position={[0, 0.1, 0]}>
-        <sphereGeometry args={[0.08, 8, 8]} />
-        <meshStandardMaterial color={COLORS.grassDark} />
-      </mesh>
-    </group>
-  );
-}
-
 // Wooden fence
 function WoodenFence({ position, rotation = 0 }: { position: [number, number, number]; rotation?: number }) {
   return (
@@ -498,54 +482,6 @@ function PandaDecoration({ position }: { position: [number, number, number] }) {
   );
 }
 
-// Small pond with water
-function Pond({ position }: { position: [number, number, number] }) {
-  const waterRef = useRef<THREE.Mesh>(null);
-
-  useFrame((state) => {
-    if (waterRef.current) {
-      waterRef.current.rotation.z = state.clock.elapsedTime * 0.1;
-    }
-  });
-
-  return (
-    <group position={position}>
-      {/* Pond basin */}
-      <mesh position={[0, -0.1, 0]} receiveShadow>
-        <cylinderGeometry args={[1.2, 1.4, 0.3, 24]} />
-        <meshStandardMaterial color={COLORS.stoneDark} />
-      </mesh>
-      {/* Water surface */}
-      <mesh ref={waterRef} position={[0, 0.02, 0]} rotation={[-Math.PI / 2, 0, 0]}>
-        <circleGeometry args={[1.1, 24]} />
-        <meshStandardMaterial
-          color={COLORS.water}
-          transparent
-          opacity={0.7}
-          metalness={0.3}
-          roughness={0.1}
-        />
-      </mesh>
-      {/* Lily pads */}
-      {[[0.4, 0.05, 0.3], [-0.3, 0.05, -0.4], [0.5, 0.05, -0.2]].map((pos, i) => (
-        <mesh key={i} position={pos as [number, number, number]} rotation={[-Math.PI / 2, 0, i * 1.5]}>
-          <circleGeometry args={[0.15, 12]} />
-          <meshStandardMaterial color={COLORS.grassDark} side={THREE.DoubleSide} />
-        </mesh>
-      ))}
-      {/* Water lily flowers */}
-      <mesh position={[0.4, 0.1, 0.3]}>
-        <sphereGeometry args={[0.06, 8, 8]} />
-        <meshStandardMaterial color={COLORS.flower1} />
-      </mesh>
-      <mesh position={[-0.3, 0.1, -0.4]}>
-        <sphereGeometry args={[0.05, 8, 8]} />
-        <meshStandardMaterial color="#FFFFFF" />
-      </mesh>
-    </group>
-  );
-}
-
 // Wooden bench
 function WoodenBench({ position, rotation = 0 }: { position: [number, number, number]; rotation?: number }) {
   return (
@@ -620,7 +556,8 @@ function Sparkles() {
       particlesRef.current.children.forEach((child, i) => {
         const t = state.clock.elapsedTime + i;
         child.position.y = 1 + Math.sin(t * 0.5) * 0.5;
-        (child as THREE.Mesh).material.opacity = 0.3 + Math.sin(t * 2) * 0.3;
+        const material = (child as THREE.Mesh).material as THREE.MeshStandardMaterial;
+        if (material.opacity !== undefined) material.opacity = 0.3 + Math.sin(t * 2) * 0.3;
       });
     }
   });

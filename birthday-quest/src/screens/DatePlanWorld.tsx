@@ -1,4 +1,4 @@
-import { useState, Suspense, useEffect } from 'react';
+import { useState, Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { PerspectiveCamera, Text, Float } from '@react-three/drei';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -387,11 +387,9 @@ function MovieSelector({
 // Beautiful Map Modal for Carl's Jr
 function MapModal({
   mapUrl,
-  title,
   onClose
 }: {
   mapUrl: string;
-  title: string;
   onClose: () => void;
 }) {
   return (
@@ -693,7 +691,6 @@ export function DatePlanWorld() {
         {showMapModal && selectedActivity?.extraData?.mapUrl && (
           <MapModal
             mapUrl={selectedActivity.extraData.mapUrl}
-            title={selectedActivity.title}
             onClose={() => setShowMapModal(false)}
           />
         )}
