@@ -647,12 +647,12 @@ export function DatePlanWorld() {
         )}
       </AnimatePresence>
 
-      {/* Instructions - center above joystick */}
+      {/* Instructions - right of joystick */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1 }}
-        className="absolute bottom-48 left-1/2 -translate-x-1/2 z-40 pointer-events-none"
+        className="absolute bottom-8 left-48 z-40 pointer-events-none"
       >
         <p className="text-sm text-white font-quicksand bg-black/40 px-4 py-2 rounded-full backdrop-blur-sm shadow-lg">
           🎮 Camina hacia las estaciones
