@@ -285,7 +285,7 @@ export function Landing() {
           >
             <div className="bg-petal-white/90 backdrop-blur-md rounded-2xl px-5 py-3 shadow-xl">
               <p className="text-lg text-warm-terracotta font-comfortaa font-bold">
-                ¡Preparando tu jardín secreto! ✨
+                A donde iremos:
               </p>
               <motion.div
                 className="text-2xl mt-1"
