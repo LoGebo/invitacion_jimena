@@ -1,3 +1,31 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Env
+.env
+.env.local
+.env.*.local
+
+# Logs
+*.log
+npm-debug.log*
+
+# Temp
+*.tmp
+*.temp
+
+# Project docs (optional)
 BIRTHDAY_QUEST_3D_BLUEPRINT.md
 RALPH_PROMPT.md
 .claude/ralph-loop.local.md
