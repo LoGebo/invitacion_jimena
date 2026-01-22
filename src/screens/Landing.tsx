@@ -243,7 +243,7 @@ export function Landing() {
           </p>
 
           <p className="text-xs text-warm-terracotta/60 text-center mb-3">
-            ~ Con amor ~
+            ~ En Jesús ~
           </p>
 
           {/* Buttons */}
