@@ -1,0 +1,267 @@
+/* === GOOGLE FONTS (must be first) === */
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Comfortaa:wght@400;600;700&display=swap');
+
+/* === TAILWIND V4 === */
+@import "tailwindcss";
+
+/* === THEME CONFIGURATION === */
+@theme {
+  /* Pasteles Primarios */
+  --color-blush-pink: #F8E1E7;
+  --color-soft-peach: #FFECD2;
+  --color-butter-cream: #FFF8E7;
+  --color-sage-green: #D4E2D4;
+  --color-lavender-mist: #E8E0F0;
+
+  /* Tonos Tierra */
+  --color-warm-terracotta: #D4A574;
+  --color-soft-brown: #C9B99A;
+  --color-honey-gold: #E8C87D;
+  --color-dusty-rose: #D4A5A5;
+
+  /* Acentos */
+  --color-moss-green: #A8C69F;
+  --color-sky-cream: #E6F0F3;
+  --color-petal-white: #FFFBF7;
+
+  /* Blue XV (para Jimena) */
+  --color-blue-xv: #5B9BD5;
+
+  /* Fonts */
+  --font-quicksand: 'Quicksand', sans-serif;
+  --font-comfortaa: 'Comfortaa', cursive;
+
+  /* Shadows */
+  --shadow-cottage: 0 4px 15px rgba(212, 165, 165, 0.3);
+  --shadow-cottage-lg: 0 8px 32px rgba(200, 180, 150, 0.15);
+  --shadow-honey: 0 6px 20px rgba(232, 200, 125, 0.4);
+}
+
+/* === CSS VARIABLES (for JS access) === */
+:root {
+  --blush-pink: #F8E1E7;
+  --soft-peach: #FFECD2;
+  --butter-cream: #FFF8E7;
+  --sage-green: #D4E2D4;
+  --lavender-mist: #E8E0F0;
+  --warm-terracotta: #D4A574;
+  --soft-brown: #C9B99A;
+  --honey-gold: #E8C87D;
+  --dusty-rose: #D4A5A5;
+  --moss-green: #A8C69F;
+  --sky-cream: #E6F0F3;
+  --petal-white: #FFFBF7;
+  --blue-xv: #5B9BD5;
+  --shadow-blush: rgba(212, 165, 165, 0.2);
+  --shadow-warm: rgba(200, 180, 150, 0.15);
+}
+
+/* === BASE STYLES === */
+* {
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-quicksand);
+  background-color: var(--petal-white);
+  color: var(--warm-terracotta);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  min-height: 100dvh;
+  overflow-x: hidden;
+}
+
+h1, h2, .title-special {
+  font-family: var(--font-comfortaa);
+}
+
+/* === UTILITY CLASSES === */
+.font-quicksand {
+  font-family: var(--font-quicksand);
+}
+
+.font-comfortaa {
+  font-family: var(--font-comfortaa);
+}
+
+/* === COMPONENT CLASSES === */
+.btn-cottage {
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  font-family: var(--font-comfortaa);
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--dusty-rose), var(--honey-gold));
+  color: var(--petal-white);
+  border: 2px solid rgba(255, 251, 247, 0.5);
+  box-shadow: var(--shadow-cottage);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.btn-cottage:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-honey);
+}
+
+.card-cottage {
+  background: rgba(255, 251, 247, 0.85);
+  backdrop-filter: blur(10px);
+  border-radius: 1.5rem;
+  border: 1px solid rgba(212, 165, 165, 0.2);
+  box-shadow: var(--shadow-cottage-lg);
+  padding: 1.5rem;
+}
+
+.input-cottage {
+  width: 100%;
+  padding: 0.75rem 1.25rem;
+  border-radius: 1rem;
+  background: var(--petal-white);
+  border: 2px solid var(--sage-green);
+  font-family: var(--font-quicksand);
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.input-cottage:focus {
+  border-color: var(--dusty-rose);
+  box-shadow: 0 0 0 4px rgba(212, 165, 165, 0.2);
+}
+
+.text-cottage-gradient {
+  background: linear-gradient(135deg, var(--dusty-rose), var(--warm-terracotta), var(--honey-gold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* === ANIMATIONS === */
+@keyframes gentleAppear {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes petalFall {
+  0% {
+    transform: translateY(-10px) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+@keyframes softGlow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(232, 200, 125, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(232, 200, 125, 0.5);
+  }
+}
+
+@keyframes floatGently {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(91, 155, 213, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(91, 155, 213, 0.7);
+  }
+}
+
+.animate-gentle-appear {
+  animation: gentleAppear 0.6s ease-out forwards;
+}
+
+.animate-petal-fall {
+  animation: petalFall 8s linear infinite;
+}
+
+.animate-soft-glow {
+  animation: softGlow 2s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: floatGently 3s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* === SCROLLBAR COTTAGECORE === */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--butter-cream);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--dusty-rose);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--warm-terracotta);
+}
+
+/* === SELECTION === */
+::selection {
+  background-color: var(--blush-pink);
+  color: var(--warm-terracotta);
+}
+
+/* === MOBILE TOUCH === */
+.touch-none {
+  touch-action: none;
+}
+
+/* Prevent pull-to-refresh and overscroll */
+html, body {
+  overscroll-behavior: none;
+}
+
+/* === CANVAS/3D STYLES === */
+canvas {
+  touch-action: none;
+}
+
+/* === HIDE SCROLLBAR FOR HORIZONTAL SCROLL === */
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
