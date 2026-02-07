@@ -1,6 +1,8 @@
 import { Canvas } from '@react-three/fiber';
-import { PerspectiveCamera, Sky, Cloud } from '@react-three/drei';
-import { Suspense } from 'react';
+import { PerspectiveCamera, Sky, Cloud, Html } from '@react-three/drei';
+import { Suspense, useState } from 'react';
+import { useFrame } from '@react-three/fiber';
+import * as THREE from 'three';
 import { Avatar } from './Avatar';
 import { Island } from './Island';
 import { GiftBox } from './GiftBox';
@@ -15,6 +17,40 @@ const GIFT_POSITIONS: { id: string; position: [number, number, number]; game: Mi
   { id: 'gift3', position: [-3, 0.5, 3], game: 'balloons' },
   { id: 'gift4', position: [3, 0.5, 3], game: 'flowers' },
 ];
+
+// Proximity trigger for the Valentine Tree (at Christmas tree position)
+function ValentineTreeTrigger() {
+  const [isNear, setIsNear] = useState(false);
+  const avatarPosition = useGameStore((s) => s.avatarActualPosition);
+  const setPhase = useGameStore((s) => s.setPhase);
+  const treePosition: [number, number, number] = [5, 0, 3];
+
+  useFrame(() => {
+    const distance = new THREE.Vector3(...avatarPosition).distanceTo(
+      new THREE.Vector3(...treePosition)
+    );
+    setIsNear(distance < 2.5);
+  });
+
+  return (
+    <group position={treePosition}>
+      {isNear && (
+        <Html center position={[0, 3.5, 0]}>
+          <button
+            onClick={() => setPhase('valentine')}
+            className="px-5 py-2.5 text-white font-comfortaa font-bold rounded-full shadow-lg border-2 border-pink-300/50 animate-bounce text-lg whitespace-nowrap"
+            style={{
+              background: 'linear-gradient(135deg, #FF69B4, #FF1493)',
+              boxShadow: '0 4px 15px rgba(255, 105, 180, 0.5)',
+            }}
+          >
+            Descubrir ❤️
+          </button>
+        </Html>
+      )}
+    </group>
+  );
+}
 
 export function Scene() {
   const isGameCompleted = useGameStore((s) => s.isGameCompleted);
@@ -100,6 +136,9 @@ export function Scene() {
 
         {/* 3D Felicidades Jimena Text */}
         <FelicidadesText />
+
+        {/* Valentine Tree Trigger */}
+        <ValentineTreeTrigger />
 
         {/* Gift Boxes */}
         {GIFT_POSITIONS.map((gift) => (

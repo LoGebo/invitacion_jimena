@@ -5,6 +5,7 @@ import { WorldHub } from './screens/WorldHub';
 import { MinigameScreen } from './screens/MinigameScreen';
 import { FinalScanner } from './screens/FinalScanner';
 import { Finale } from './screens/Finale';
+import { ValentineTree } from './screens/ValentineTree';
 import { AnimatePresence, motion } from 'framer-motion';
 
 function App() {
@@ -98,6 +99,18 @@ function App() {
             transition={{ duration: 0.5 }}
           >
             <Finale />
+          </motion.div>
+        )}
+
+        {phase === 'valentine' && (
+          <motion.div
+            key="valentine"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <ValentineTree />
           </motion.div>
         )}
       </AnimatePresence>

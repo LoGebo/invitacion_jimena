@@ -1,5 +1,5 @@
 // Game types
-export type GamePhase = 'landing' | 'plan' | 'hub' | 'minigame' | 'scanner' | 'finale';
+export type GamePhase = 'landing' | 'plan' | 'hub' | 'minigame' | 'scanner' | 'finale' | 'valentine';
 export type MinigameId = 'scratch' | 'trivia' | 'balloons' | 'flowers' | null;
 
 // Trivia types

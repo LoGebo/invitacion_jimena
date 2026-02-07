@@ -74,6 +74,9 @@ export default defineConfig({
       },
     }),
   ],
+  optimizeDeps: {
+    exclude: ['@react-three/rapier'],
+  },
   build: {
     rollupOptions: {
       output: {
